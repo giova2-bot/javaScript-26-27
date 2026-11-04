@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Maschera inserimento dati</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            width: 450px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            width: 80%;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Maschera inserimento dati personali</h2>
+    <form id="modulo">
+
+        <label>Nome:</label>
+        <input type="text" id="nome" required>
+
+        <label>Cognome:</label>
+        <input type="text" id="cognome" required>
+
+        <label>Età:</label>
+        <input type="number" id="eta" min="1" required>
+
+        <label>Sesso:</label>
+        <input type="radio" name="sesso" value="Maschio" required> Maschio
+        <input type="radio" name="sesso" value="Femmina"> Femmina
+
+        <label>Indirizzo:</label>
+        <input type="text" id="indirizzo">
+
+        <label>Città:</label>
+        <input type="text" id="citta">
+
+        <label>Provincia:</label>
+        <select id="provincia">
+            <option value="">Seleziona provincia</option>
+            <option value="Milano">Milano</option>
+            <option value="Roma">Roma</option>
+            <option value="Torino">Torino</option>
+            <option value="Napoli">Napoli</option>
+            <option value="Bologna">Bologna</option>
+            <option value="Firenze">Firenze</option>
+        </select>
+
+        <label>Sport praticati:</label>
+        <input type="checkbox" name="sport" value="Calcio"> Calcio
+        <input type="checkbox" name="sport" value="Nuoto"> Nuoto
+        <input type="checkbox" name="sport" value="Tennis"> Tennis
+        <input type="checkbox" name="sport" value="Pallavolo"> Pallavolo
+
+        <label>Commenti:</label>
+        <textarea id="commenti" rows="4"></textarea>
+
+        <button type="submit">Invia</button>
+        <button type="reset">Cancella</button>
+
+    </form>
+
+    <h2>Dati inseriti</h2>
+
+    <table id="tabella">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valore</th>
+            </tr>
+        </thead>
+        <tbody id="risultato">
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById("modulo").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            // Lettura dei dati
+            let nome = document.getElementById("nome").value;
+            let cognome = document.getElementById("cognome").value;
+            let eta = document.getElementById("eta").value;
+            let indirizzo = document.getElementById("indirizzo").value;
+            let citta = document.getElementById("citta").value;
+            let provincia = document.getElementById("provincia").value;
+            let commenti = document.getElementById("commenti").value;
+
+            // Lettura del sesso
+            let sesso = document.querySelector('input[name="sesso"]:checked').value;
+
+            // Lettura degli sport selezionati
+            let sportSelezionati = document.querySelectorAll('input[name="sport"]:checked');
+
+            let sport = [];
+
+            sportSelezionati.forEach(function(elemento) {
+                sport.push(elemento.value);
+            });
+
+            // Creazione dei dati della tabella
+            let dati = [
+                ["Nome", nome],
+                ["Cognome", cognome],
+                ["Età", eta],
+                ["Sesso", sesso],
+                ["Indirizzo", indirizzo],
+                ["Città", citta],
+                ["Provincia", provincia],
+                ["Sport praticati", sport.join(", ") || "Nessuno"],
+                ["Commenti", commenti]
+            ];
+
+            // Stampa nella tabella
+            let risultato = document.getElementById("risultato");
+
+            risultato.innerHTML = "";
+
+            dati.forEach(function(elemento) {
+
+                let riga = document.createElement("tr");
+
+                let colonna1 = document.createElement("td");
+                let colonna2 = document.createElement("td");
+
+                colonna1.textContent = elemento[0];
+                colonna2.textContent = elemento[1];
+
+                riga.appendChild(colonna1);
+                riga.appendChild(colonna2);
+
+                risultato.appendChild(riga);
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
