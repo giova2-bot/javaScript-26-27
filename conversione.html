@@ -1,1 +1,42 @@
 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Conversione binaria</title>
+
+    <script>
+        function converti() {
+            var numero = parseInt(document.getElementById("numero").value);
+
+            if (numero >= 0 && numero <= 255) {
+                var binario = numero.toString(2);
+
+                while (binario.length < 8) {
+                    binario = "0" + binario;
+                }
+
+                document.getElementById("risultato").innerHTML = binario;
+            }
+            else {
+                document.getElementById("risultato").innerHTML = "Inserisci un numero da 0 a 255";
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h3>Conversione da decimale a binario</h3>
+
+    Inserisci un numero:
+    <input type="number" id="numero">
+
+    <input type="button" value="Converti" onclick="converti()">
+
+    <p id="risultato"></p>
+
+</body>
+
+</html>
+
