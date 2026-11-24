@@ -6,14 +6,11 @@
     <title>Test</title>
 
     <script>
-        function stampa_nome() {
-            var nome = document.getElementById("teston");
-            console.log(nome.value);
-        }
+        function stampa() {
+            var nome = document.getElementById("teston").value;
+            var cognome = document.getElementById("testoc").value;
 
-        function stampa_cognome() {
-            var cognome = document.getElementById("testoc");
-            console.log(cognome.value);
+            document.getElementById("risultato").innerHTML = nome + " " + cognome;
         }
     </script>
 </head>
@@ -27,17 +24,16 @@
         </tr>
 
         <tr>
-            <td>
-                <input type="text" id="teston">
-                <input type="button" value="Stampa" onclick="stampa_nome()">
-            </td>
-
-            <td>
-                <input type="text" id="testoc">
-                <input type="button" value="Stampa" onclick="stampa_cognome()">
-            </td>
+            <td><input type="text" id="teston"></td>
+            <td><input type="text" id="testoc"></td>
         </tr>
     </table>
+
+    <br>
+
+    <input type="button" value="Stampa" onclick="stampa()">
+
+    <p id="risultato"></p>
 
 </body>
 
