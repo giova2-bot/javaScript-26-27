@@ -1,34 +1,44 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html>
 
 <head>
-  <title>Test</title>
+    <title>Test</title>
 
-  <script>
-    function stampa_nome() {
-      var nome = document.getElementById("teston");
-      console.log(nome.value);
-    }
+    <script>
+        function stampa_nome() {
+            var nome = document.getElementById("teston");
+            console.log(nome.value);
+        }
 
-    function stampa_cognome() {
-      var nome = document.getElementById("testoc");
-      console.log(nome.value);
-    }
-  </script>
+        function stampa_cognome() {
+            var cognome = document.getElementById("testoc");
+            console.log(cognome.value);
+        }
+    </script>
 </head>
 
 <body>
-  <table>
-    <tr>
-      <th>Nome</th>
-      <th>Cognome</th>
-    </tr>
-    <tr>
-      <td><input type="text" id="teston"> <input type="button" onclick="stampa_nome()"></td>
-      <td><input type="text" id="testoc"> <input type="button" onclick="stampa_cognome()"></td>
-    </tr>
-  </table>
+
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="text" id="teston">
+                <input type="button" value="Stampa" onclick="stampa_nome()">
+            </td>
+
+            <td>
+                <input type="text" id="testoc">
+                <input type="button" value="Stampa" onclick="stampa_cognome()">
+            </td>
+        </tr>
+    </table>
+
 </body>
 
 </html>
